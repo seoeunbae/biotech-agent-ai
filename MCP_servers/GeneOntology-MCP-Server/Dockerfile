@@ -10,6 +10,7 @@ RUN npm run build
 
 FROM node:20-slim
 
+
 WORKDIR /app
 
 COPY --from=builder /app/package*.json ./
