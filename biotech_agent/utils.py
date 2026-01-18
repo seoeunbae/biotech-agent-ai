@@ -5,7 +5,7 @@ from typing import Optional, Dict
 import google.auth
 import google.auth.transport.requests
 from google.oauth2 import id_token
-from google.adk.tools import McpToolset
+from google.adk.tools.mcp_tool.mcp_toolset import McpToolset
 from google.adk.tools.mcp_tool.mcp_session_manager import SseConnectionParams
 from google.adk.agents.readonly_context import ReadonlyContext
 

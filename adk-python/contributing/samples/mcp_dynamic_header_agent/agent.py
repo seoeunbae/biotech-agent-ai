@@ -15,7 +15,7 @@
 
 from google.adk.agents.llm_agent import LlmAgent
 from google.adk.tools.mcp_tool.mcp_session_manager import StreamableHTTPConnectionParams
-from google.adk.tools.mcp_tool.mcp_toolset import McpToolset
+from google.adk.tools.mcp_tool import McpToolset
 
 root_agent = LlmAgent(
     model='gemini-2.0-flash',

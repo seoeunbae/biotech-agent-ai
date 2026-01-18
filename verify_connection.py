@@ -12,20 +12,27 @@ async def verify_connection():
     print(f"Connecting to {OPENTARGETS_MCP_URL}...")
     # Manually create toolset with headers in connection params to verified fix
     from biotech_agent.utils import get_auth_token
-    from google.adk.tools import McpToolset
+    from google.adk.tools.mcp_tool.mcp_toolset import McpToolset    
     from google.adk.tools.mcp_tool.mcp_session_manager import SseConnectionParams
     
-    # Try basic gcloud token without audience
-    import subprocess
-    try:
-        token = subprocess.check_output(
-            ["gcloud", "auth", "print-identity-token"], text=True
-        ).strip()
-        print("Got token from gcloud (no audience)")
-    except Exception as e:
-        print(f"gcloud failed: {e}")
-        from biotech_agent.utils import get_auth_token
-        token = get_auth_token(OPENTARGETS_MCP_URL)
+    # Check for BIOTECH_AGENT_TOKEN environment variable
+    import os
+    biotech_agent_token = os.environ.get("BIOTECH_AGENT_TOKEN")
+    if biotech_agent_token:
+        token = biotech_agent_token
+        print("Using token from BIOTECH_AGENT_TOKEN environment variable.")
+    else:
+        # Try basic gcloud token without audience
+        import subprocess
+        try:
+            token = subprocess.check_output(
+                ["gcloud", "auth", "print-identity-token"], text=True
+            ).strip()
+            print("Got token from gcloud (no audience)")
+        except Exception as e:
+            print(f"gcloud failed: {e}")
+            from biotech_agent.utils import get_auth_token
+            token = get_auth_token(OPENTARGETS_MCP_URL)
     
     # Debug: Check token claims
     import json
