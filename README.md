@@ -30,7 +30,7 @@ Biotech Agent를 통해 다음과 같은 문제를 해결하고 연구 환경을
 
 Biotech Agent는 연구원들이 데이터의 장벽을 넘어 더 빠르고 효율적으로 위대한 발견을 할 수 있도록 돕는 강력한 조수가 될 것입니다.
 
-## Architecture Diagram (Mermaid)
+## Architecture Diagram
 
 ```mermaid
 ---
