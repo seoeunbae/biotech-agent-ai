@@ -29,3 +29,50 @@ Biotech Agent를 통해 다음과 같은 문제를 해결하고 연구 환경을
 *   **통합적 인사이트 도출:** 여러 데이터 소스에 분산된 정보를 한 번에 종합하여 보여줌으로써, 단일 데이터베이스만으로는 발견하기 어려웠던 새로운 관계나 패턴을 발견하고 더 깊이 있는 인사이트를 얻을 수 있도록 지원합니다.
 
 Biotech Agent는 연구원들이 데이터의 장벽을 넘어 더 빠르고 효율적으로 위대한 발견을 할 수 있도록 돕는 강력한 조수가 될 것입니다.
+
+## Architecture Diagram (Mermaid)
+
+```mermaid
+ graph TD
+     subgraph User
+         U[User]
+     end
+    
+     subgraph Biotech Agent System
+         RA[biotech_root_agent]
+    
+         subgraph Sub-Agents
+             NA[normalization_agent]
+             GA[gene_analysis_agent]
+             ISA[insight_synthesis_agent]
+         end
+    
+         subgraph MCP Tools
+             OT[OpenTargets MCP]
+             OG[OpenGenes MCP]
+             GO[Gene Ontology MCP]
+             OFDA[OpenFDA MCP]
+         end
+     end
+    
+     U -- "Drug discovery query" --> RA
+    
+     RA -- 1. "Normalize disease/drug" --> NA
+     NA -- "E.g., 'Lung Cancer' -> EFO_0000384" --> OT
+     OT -- "Standard ID" --> NA
+     NA -- "Normalized ID" --> RA
+    
+     RA -- 2. "Find associated genes" --> GA
+     GA -- "Query with EFO ID" --> OG
+     GA -- "Analyze gene function" --> GO
+     OG -- "Gene Data" --> GA
+     GO -- "Ontology Data" --> GA
+     GA -- "Gene Analysis Report" --> RA
+    
+     RA -- 3. "Check regulatory info" --> ISA
+     ISA -- "Query with drug/gene" --> OFDA
+     OFDA -- "FDA Data" --> ISA
+     ISA -- "Regulatory Summary" --> RA
+    
+     RA -- "Comprehensive Answer" --> U
+```
