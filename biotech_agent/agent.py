@@ -4,8 +4,6 @@ from biotech_agent.subagents.normalization.agent import create_agent as create_n
 from biotech_agent.subagents.gene_analysis.agent import create_agent as create_gene_analysis_agent
 from biotech_agent.subagents.insight_synthesis.agent import create_agent as create_insight_agent
 
-
-
 def create_root_agent(model: str = "gemini-2.5-pro") -> Agent:
     normalization_agent = create_normalization_agent(model)
     gene_analysis_agent = create_gene_analysis_agent(model)
@@ -50,6 +48,27 @@ class BioTechAgent:
     def __init__(self, model: str = "gemini-2.5-pro"):
         # 초기화 시점에 ADK 에이전트를 생성하여 들고 있습니다.
         self.agent = create_root_agent(model=model)
+
+    def query(self, input: str, **kwargs) -> dict:
+        """
+        [표준 메서드] 
+        클라이언트에서 remote_agent.query(input="...") 호출 시 
+        실제로 엔진 내부에서 실행되는 진입점입니다.
+        """
+        # 1. 입력 값 전처리 (필요시)
+        print(f"받은 질문: {input}")
+
+        # 2. 실제 비즈니스 로직 실행 
+        # (비동기 에이전트라면 여기서 asyncio.run 등으로 호출)
+        import asyncio
+        response = asyncio.run(self.agent.run(input))
+
+        # 3. 결과 반환 (JSON 직렬화가 가능한 형태 권장)
+        return {
+            "answer": response,
+            "status": "success",
+            "model_used": self.model
+        }
 
     # 비동기 단일 질의 함수 추가
     async def async_query(self, input: str, **kwargs) -> Any:
