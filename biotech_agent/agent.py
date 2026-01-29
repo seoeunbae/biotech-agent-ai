@@ -1,8 +1,8 @@
 from typing import Any, AsyncGenerator
 from google.adk.agents import Agent, LoopAgent
-from .subagents.normalization.agent import create_agent as create_normalization_agent
-from .subagents.gene_analysis.agent import create_agent as create_gene_analysis_agent
-from .subagents.insight_synthesis.agent import create_agent as create_insight_agent
+from biotech_agent.subagents.normalization.agent import create_agent as create_normalization_agent
+from biotech_agent.subagents.gene_analysis.agent import create_agent as create_gene_analysis_agent
+from biotech_agent.subagents.insight_synthesis.agent import create_agent as create_insight_agent
 
 
 
