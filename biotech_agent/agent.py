@@ -1,3 +1,4 @@
+from typing import Any, AsyncGenerator
 from google.adk.agents import Agent, LoopAgent
 from .subagents.normalization.agent import create_agent as create_normalization_agent
 from .subagents.gene_analysis.agent import create_agent as create_gene_analysis_agent
@@ -35,7 +36,7 @@ def create_root_agent(model: str = "gemini-2.5-pro") -> Agent:
     For example, if Normalization returns an EFO ID, pass that ID to Gene Analysis.
     If Gene Analysis returns a list of genes, you might ask Insight Synthesis to check if there are existing drugs targeting those genes.
 
-    Provide a comprehensive final answer to the user based on the combined findings.
+    Provide a comprehensive final answer to the combined findings.
     """,
         description="Root agent for BioTech Drug Discovery that orchestrates specialized subagents."
     )
@@ -43,6 +44,29 @@ def create_root_agent(model: str = "gemini-2.5-pro") -> Agent:
 
 # Expose the agent instance for ADK to pick up if needed, though usually ADK runs via a script or adk web pointing to the file.
 # We'll instantiate it here.
-root_agent = create_root_agent()
+# root_agent = create_root_agent()
 
+class BioTechAgent:
+    def __init__(self, model: str = "gemini-2.5-pro"):
+        # 초기화 시점에 ADK 에이전트를 생성하여 들고 있습니다.
+        self.agent = create_root_agent(model=model)
+
+    # 비동기 단일 질의 함수 추가
+    async def async_query(self, input: str, **kwargs) -> Any:
+        """
+        SDK에서 await deployed_agent.async_query(input="...")로 호출 가능하게 함
+        """
+        # ADK Agent의 비동기 실행 메서드 (보통 .run 또는 .arun)
+        return await self.agent.run(input)
+
+    # 비동기 스트리밍 함수 추가
+    async def async_stream_query(self, input: str, **kwargs) -> AsyncGenerator[Any, None]:
+        """
+        SDK에서 async for chunk in deployed_agent.async_stream_query(...)로 호출 가능하게 함
+        """
+        async for chunk in self.agent.stream(input):
+            yield chunk
+
+# 배포용 인스턴스 생성
+root_agent_instance = BioTechAgent()
 
