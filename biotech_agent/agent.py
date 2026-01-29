@@ -49,7 +49,7 @@ class BioTechAgent:
         # 초기화 시점에 ADK 에이전트를 생성하여 들고 있습니다.
         self.agent = create_root_agent(model=model)
 
-    def query(self, input: str, **kwargs) -> dict:
+    def query(self, input: str) -> dict:
         """
         [표준 메서드] 
         클라이언트에서 remote_agent.query(input="...") 호출 시 
@@ -62,6 +62,7 @@ class BioTechAgent:
         # (비동기 에이전트라면 여기서 asyncio.run 등으로 호출)
         import asyncio
         response = asyncio.run(self.agent.run(input))
+
 
         # 3. 결과 반환 (JSON 직렬화가 가능한 형태 권장)
         return {
