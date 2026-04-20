@@ -1,7 +1,0 @@
-.git
-.github
-.venv
-.env.example
-__pycache__
-examples/
-tests/

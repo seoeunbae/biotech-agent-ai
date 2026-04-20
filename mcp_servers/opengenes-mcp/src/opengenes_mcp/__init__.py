@@ -1,1 +1,0 @@
-"""OpenGenes MCP Server - A Model Context Protocol server for querying OpenGenes database."""
