@@ -1,11 +1,14 @@
+import logging
+
 from google.adk.agents import Agent
+from biotech_agent.config import DEFAULT_MODEL, GENE_ONTOLOGY_MCP_URL, OPENGENES_MCP_URL
 from biotech_agent.utils import create_mcp_toolset
 
-# MCP URLs
-OPENGENES_MCP_URL = "https://opengenes-mcp-520634294170.us-central1.run.app/sse"
-GENE_ONTOLOGY_MCP_URL = "https://gene-ontology-mcp-server-520634294170.us-central1.run.app/sse"
+logger = logging.getLogger(__name__)
 
-def create_agent(model: str = "gemini-2.5-pro") -> Agent:
+
+def create_agent(model: str = DEFAULT_MODEL) -> Agent:
+    logger.info("Creating gene_analysis_agent model=%s", model)
     tools = [
         create_mcp_toolset(OPENGENES_MCP_URL),
         create_mcp_toolset(GENE_ONTOLOGY_MCP_URL)

@@ -1,10 +1,14 @@
+import logging
+
 from google.adk.agents import Agent
+from biotech_agent.config import DEFAULT_MODEL, OPENTARGETS_MCP_URL
 from biotech_agent.utils import create_mcp_toolset
 
-# OpenTargets MCP URL
-OPENTARGETS_MCP_URL = "https://opentargets-mcp-520634294170.us-central1.run.app/sse"
+logger = logging.getLogger(__name__)
 
-def create_agent(model: str = "gemini-2.5-pro") -> Agent:
+
+def create_agent(model: str = DEFAULT_MODEL) -> Agent:
+    logger.info("Creating normalization_agent model=%s url=%s", model, OPENTARGETS_MCP_URL)
     tools = [create_mcp_toolset(OPENTARGETS_MCP_URL)]
     
     return Agent(

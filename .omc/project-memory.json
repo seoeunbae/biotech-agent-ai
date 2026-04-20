@@ -1,0 +1,186 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1776647879362,
+  "projectRoot": "/Users/baeseoeun/workspace/biotech-agent-ai",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "adk-python": {
+      "path": "adk-python",
+      "purpose": null,
+      "fileCount": 11,
+      "lastAccessed": 1776647879309,
+      "keyFiles": [
+        "AGENTS.md",
+        "CHANGELOG.md",
+        "CONTRIBUTING.md",
+        "LICENSE",
+        "README.md"
+      ]
+    },
+    "biotech_agent": {
+      "path": "biotech_agent",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1776647879313,
+      "keyFiles": [
+        "__init__.py",
+        "agent.py",
+        "debug_adk.py",
+        "requirements.txt",
+        "utils.py"
+      ]
+    },
+    "mcp_servers": {
+      "path": "mcp_servers",
+      "purpose": null,
+      "fileCount": 1,
+      "lastAccessed": 1776647879315,
+      "keyFiles": [
+        "keys"
+      ]
+    },
+    "adk-python/assets": {
+      "path": "adk-python/assets",
+      "purpose": "Static assets",
+      "fileCount": 2,
+      "lastAccessed": 1776647879318,
+      "keyFiles": [
+        "adk-web-dev-ui-function-call.png",
+        "agent-development-kit.png"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "biotech_agent/tests/test_utils.py",
+      "accessCount": 10,
+      "lastAccessed": 1776659602871,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/utils.py",
+      "accessCount": 8,
+      "lastAccessed": 1776659572295,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/tests/test_config.py",
+      "accessCount": 5,
+      "lastAccessed": 1776659581197,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/agent.py",
+      "accessCount": 4,
+      "lastAccessed": 1776651979245,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/subagents/normalization/agent.py",
+      "accessCount": 4,
+      "lastAccessed": 1776651979742,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/subagents/gene_analysis/agent.py",
+      "accessCount": 4,
+      "lastAccessed": 1776651980271,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/subagents/insight_synthesis/agent.py",
+      "accessCount": 4,
+      "lastAccessed": 1776651980645,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/config.py",
+      "accessCount": 2,
+      "lastAccessed": 1776651978411,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/tests/test_agents.py",
+      "accessCount": 2,
+      "lastAccessed": 1776651982067,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/.env.example",
+      "accessCount": 2,
+      "lastAccessed": 1776651982459,
+      "type": "file"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 1,
+      "lastAccessed": 1776648047823,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/requirements.txt",
+      "accessCount": 1,
+      "lastAccessed": 1776648051142,
+      "type": "file"
+    },
+    {
+      "path": "test_genai_client.py",
+      "accessCount": 1,
+      "lastAccessed": 1776648153284,
+      "type": "file"
+    },
+    {
+      "path": "verify_connection.py",
+      "accessCount": 1,
+      "lastAccessed": 1776648153470,
+      "type": "file"
+    },
+    {
+      "path": "mcp_servers/opengenes-mcp/src/opengenes_mcp/server.py",
+      "accessCount": 1,
+      "lastAccessed": 1776648157299,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent/debug_adk.py",
+      "accessCount": 1,
+      "lastAccessed": 1776648166324,
+      "type": "file"
+    },
+    {
+      "path": "biotech_agent",
+      "accessCount": 1,
+      "lastAccessed": 1776651990246,
+      "type": "directory"
+    }
+  ],
+  "userDirectives": []
+}

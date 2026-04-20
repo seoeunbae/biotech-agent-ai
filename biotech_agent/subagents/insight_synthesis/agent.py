@@ -1,10 +1,14 @@
+import logging
+
 from google.adk.agents import Agent
+from biotech_agent.config import DEFAULT_MODEL, OPENFDA_MCP_URL
 from biotech_agent.utils import create_mcp_toolset
 
-# OpenFDA MCP URL
-OPENFDA_MCP_URL = "https://openfda-mcp-server-520634294170.us-central1.run.app/sse"
+logger = logging.getLogger(__name__)
 
-def create_agent(model: str = "gemini-2.5-pro") -> Agent:
+
+def create_agent(model: str = DEFAULT_MODEL) -> Agent:
+    logger.info("Creating insight_synthesis_agent model=%s url=%s", model, OPENFDA_MCP_URL)
     tools = [create_mcp_toolset(OPENFDA_MCP_URL)]
     
     return Agent(

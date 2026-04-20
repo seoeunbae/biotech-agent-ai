@@ -1,13 +1,22 @@
+import logging
+import os
+
 from google.adk.agents import Agent
+
+from .config import DEFAULT_MODEL
 from .subagents.normalization.agent import create_agent as create_normalization_agent
 from .subagents.gene_analysis.agent import create_agent as create_gene_analysis_agent
 from .subagents.insight_synthesis.agent import create_agent as create_insight_agent
 
-def create_root_agent(model: str = "gemini-2.5-pro") -> Agent:
+logger = logging.getLogger(__name__)
+
+
+def create_root_agent(model: str = DEFAULT_MODEL) -> Agent:
+    logger.info("Creating biotech_root_agent model=%s", model)
     normalization_agent = create_normalization_agent(model)
     gene_analysis_agent = create_gene_analysis_agent(model)
     insight_agent = create_insight_agent(model)
-    
+
     return Agent(
         name="biotech_root_agent",
         model=model,
@@ -27,9 +36,11 @@ def create_root_agent(model: str = "gemini-2.5-pro") -> Agent:
 
     Provide a comprehensive final answer to the user based on the combined findings.
     """,
-        description="Root agent for BioTech Drug Discovery that orchestrates specialized subagents."
+        description="Root agent for BioTech Drug Discovery that orchestrates specialized subagents.",
     )
 
-# Expose the agent instance for ADK to pick up if needed, though usually ADK runs via a script or adk web pointing to the file.
-# We'll instantiate it here.
-root_agent = create_root_agent()
+
+# Guard module-level instantiation: set BIOTECH_AGENT_AUTOLOAD=false to skip
+# live MCP connections during import (e.g. in tests or notebooks).
+if os.environ.get("BIOTECH_AGENT_AUTOLOAD", "true").lower() == "true":
+    root_agent = create_root_agent()

@@ -1,0 +1,14 @@
+# Ralph Progress Log
+
+## Session: biotech-agent-improvements
+
+### Phase 1-6 already implemented (pre-ralph):
+- biotech_agent/config.py — centralised env-var config for all MCP URLs + model
+- biotech_agent/utils.py — token caching, safe URL parsing, retry logic, header_provider fix
+- biotech_agent/agent.py — BIOTECH_AGENT_AUTOLOAD guard, logging
+- subagents/*/agent.py — removed hardcoded URLs, added logging
+- biotech_agent/tests/ — test_config.py, test_utils.py, test_agents.py
+
+### Remaining:
+- Install google-adk so imports resolve
+- Run test suite

@@ -1,0 +1,39 @@
+{
+  "stories": [
+    {
+      "id": "US-001",
+      "title": "Install google-adk dependency",
+      "acceptanceCriteria": [
+        "pip3 show google-adk exits with 0 and shows a version",
+        "pip3 show pytest exits with 0"
+      ],
+      "passes": true
+    },
+    {
+      "id": "US-002",
+      "title": "No hardcoded MCP URLs in subagent files",
+      "acceptanceCriteria": [
+        "grep for hardcoded Cloud Run URLs in biotech_agent/subagents/ returns no matches",
+        "biotech_agent/config.py exists and contains all 4 MCP URL env-var lookups"
+      ],
+      "passes": true
+    },
+    {
+      "id": "US-003",
+      "title": "Safe import without live MCP connections",
+      "acceptanceCriteria": [
+        "BIOTECH_AGENT_AUTOLOAD=false python3 -c 'import biotech_agent.agent; print(\"OK\")' prints OK with exit 0"
+      ],
+      "passes": true
+    },
+    {
+      "id": "US-004",
+      "title": "Unit tests pass",
+      "acceptanceCriteria": [
+        "pytest biotech_agent/tests/ -v exits with 0",
+        "All test_config.py, test_utils.py, test_agents.py tests collected and pass"
+      ],
+      "passes": true
+    }
+  ]
+}
