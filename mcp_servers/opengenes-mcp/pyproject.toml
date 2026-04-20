@@ -1,0 +1,57 @@
+[project]
+name = "opengenes-mcp"
+version = "0.2.0"
+description = "MCP for OpenGenes"
+readme = "README.md"
+authors = [
+    { name = "antonkulaga", email = "antonkulaga@gmail.com" },
+    { name = "Livia Zaharia", email = "liviazaharia2020@gmail.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "eliot>=1.17.5",
+    "pycomfort>=0.0.18",
+    "fastmcp>=2.9.1",
+    "aiosqlite>=0.20.0",
+    "sqlite-utils>=3.38",
+    "huggingface-hub>=0.33.1",
+    "typer>=0.16.0",
+]
+
+[project.scripts]
+opengenes-mcp = "opengenes_mcp.server:cli_app_stdio"
+opengenes-mcp-stdio = "opengenes_mcp.server:cli_app_stdio"
+opengenes-mcp-sse = "opengenes_mcp.server:cli_app_sse"
+opengenes-mcp-run = "opengenes_mcp.server:cli_app_run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/opengenes_mcp"]
+
+[tool.hatch.build]
+exclude = [
+    "*.log",
+    "logs/",
+    "images/",
+    ".venv/",
+    ".pytest_cache/",
+    "test/",
+    # Exclude development/temporary databases but keep the main data
+    "*.db",
+    "temp*.sqlite*",
+    "test*.sqlite*",
+    "debug*.sqlite*",
+    # Exclude data directory since we now load from Hugging Face
+    # "data/"
+]
+
+[dependency-groups]
+dev = [
+    "just-agents-core>=0.8.0",
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.0.0",
+    "ruff>=0.12.1"
+]

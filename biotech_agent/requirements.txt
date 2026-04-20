@@ -1,0 +1,6 @@
+google-adk>=0.5.0
+google-cloud-aiplatform[agent_engines]
+vertexai
+google-auth
+requests
+google-cloud-logging

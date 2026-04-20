@@ -1,0 +1,10 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+.adk/
+.omc
+adk-python/
+.vscode
+.pytest_cache
