@@ -30,11 +30,12 @@ def _fetch_token(url: str) -> str:
         token = subprocess.check_output(
             ["gcloud", "auth", "print-identity-token"], text=True
         ).strip()
+    except Exception as e_gcloud:
+        logger.debug("gcloud auth failed, falling back to google.auth: %s", e_gcloud)
+    else:
         if not token:
             raise ValueError("gcloud returned empty token")
         return token
-    except Exception as e_gcloud:
-        logger.debug("gcloud auth failed, falling back to google.auth: %s", e_gcloud)
 
     try:
         auth_req = google.auth.transport.requests.Request()
