@@ -5,3 +5,4 @@ __pycache__/
 .DS_Store
 .adk/
 biotech_agent_tmp*/
+.omc
