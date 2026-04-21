@@ -31,51 +31,5 @@ Biotech Agent를 통해 다음과 같은 문제를 해결하고 연구 환경을
 Biotech Agent는 연구원들이 데이터의 장벽을 넘어 더 빠르고 효율적으로 위대한 발견을 할 수 있도록 돕는 강력한 조수가 될 것입니다.
 
 ## Architecture Diagram
-```mermaid
----
-config:
-  theme: neutral
----
-graph TD
-    subgraph User
-        U[사용자]
-    end
 
-    subgraph Biotech Agent System
-        RA[biotech_root_agent]
-
-        subgraph Sub-Agents
-            NA[normalization_agent]
-            GA[gene_analysis_agent]
-            ISA[insight_synthesis_agent]
-        end
-
-        subgraph MCP Tools
-            OT[OpenTargets MCP]
-            OG[OpenGenes MCP]
-            GO[Gene Ontology MCP]
-            OFDA[OpenFDA MCP]
-        end
-    end
-
-    U -->|질병 검색 질의| RA
-
-    RA -->|1. 질병 정규화| NA
-    NA -->|E.g., 'Lung Cancer' -> EFO_0000384| OT
-    OT -->|Standard ID| NA
-    NA -->|Normalized ID| RA
-
-    RA -->|2. 연관 유전자 정보 검색| GA
-    GA -->|EFO ID로 질의| OG
-    GA -->|유전정보 분석| GO
-    OG -->|유전자 정보| GA
-    GO -->|온톨로지 데이터| GA
-    GA -->|유전자 분석 리포트| RA
-
-    RA -->|3. 논문 정보 검색| ISA
-    ISA -->|질병으로 검색| OFDA
-    OFDA -->|FDA Data| ISA
-    ISA -->|논문 요약본| RA
-
-    RA -->|최종답변| U
-```
+<img width="624" height="576" alt="Screenshot 2026-04-21 at 2 53 42 PM" src="https://github.com/user-attachments/assets/476e9f1f-39d2-465e-8a64-14461d0ec990" />
